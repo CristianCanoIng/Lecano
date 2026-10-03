@@ -1,116 +1,89 @@
-# Lecano
+# Lecano · Petagram
 
-Aplicación Android desarrollada en **Kotlin** para capturar, validar, confirmar y editar datos de contacto mediante dos Activities y componentes de **Material Design**.
+Aplicación Android en **Kotlin** que implementa una lista de mascotas con `RecyclerView`, sistema de rating y una pantalla de las últimas 5 mascotas favoritas.
 
-## Funcionalidad
+## Parte 1 · Lista de mascotas
 
-La aplicación implementa el flujo completo solicitado:
+La pantalla principal utiliza un `RecyclerView` para mostrar un DataSet de mascotas. Cada item incluye:
 
-1. **Formulario de contacto**
-   - Nombre completo
-   - Fecha de nacimiento mediante `DatePickerDialog`
-   - Teléfono
-   - Email
-   - Descripción del contacto
-   - Botón **Continuar**
+- Identidad visual de la mascota
+- Nombre
+- Rating actual
+- Hueso amarillo que representa el rating acumulado
+- Hueso de acción para dar un voto a la mascota
 
-2. **Confirmación de datos**
-   - Visualización de todos los datos ingresados
-   - Botón **Editar datos**
-   - Retorno al formulario con los campos previamente diligenciados
+Cada mascota puede recibir un voto por sesión desde el hueso de acción. Al votar, el contador aumenta y el hueso cambia de estado.
 
-## Tecnologías utilizadas
+## Parte 2 · Action View de favoritos
 
-- Kotlin
-- Android SDK
-- Gradle con Kotlin DSL
-- Material Components
-- `TextInputLayout`
-- `TextInputEditText`
-- `MaterialButton`
-- `DatePickerDialog`
-- Activities e Intents
-- Animaciones y transiciones XML
+La barra superior contiene un **Action View en forma de estrella** con el número 5.
 
-## Criterios cumplidos
+Al seleccionarlo se abre `FavoritesActivity`, que:
 
-- ✅ EditText con Material Design
-- ✅ Nombre completo
-- ✅ Fecha de nacimiento
-- ✅ Picker de fecha
-- ✅ Teléfono
-- ✅ Email
-- ✅ Descripción del contacto
-- ✅ Validación de campos obligatorios
-- ✅ Validación de formato de email
-- ✅ Pantalla de confirmación
-- ✅ Botón **Editar datos**
-- ✅ Datos precargados al volver al formulario
-- ✅ Diseño visual personalizado
-- ✅ Animaciones de entrada y transición
+- Muestra exactamente **5 mascotas hardcodeadas**
+- Utiliza el mismo `RecyclerView`
+- Permite regresar al Activity padre mediante el botón de navegación
 
-## Evidencias
+La pantalla principal también contiene un **FloatingActionButton** para subir rápidamente al inicio de la lista.
 
-### Formulario inicial
-
-![Formulario inicial](docs/screenshots/formulario-vacio.png)
-
-### Formulario diligenciado
-
-![Formulario diligenciado](docs/screenshots/formulario-completo.png)
-
-### Confirmación de datos
-
-![Confirmación de datos](docs/screenshots/confirmacion.png)
-
-Las capturas se encuentran en:
+## Arquitectura solicitada
 
 ```text
-docs/screenshots/
-├── formulario-vacio.png
-├── formulario-completo.png
-└── confirmacion.png
+app/src/main/java/com/example/lecano/
+├── Mascota.kt              # Entidad
+├── MascotaData.kt          # DataSet
+├── MascotaAdapter.kt       # Adapter + ViewHolder
+├── MainActivity.kt         # Lista principal
+└── FavoritesActivity.kt    # Últimas 5 favoritas
 ```
 
-## Estructura principal
+Layouts principales:
 
 ```text
-app/src/main/
-├── java/com/example/lecano/
-│   ├── MainActivity.kt
-│   └── ConfirmationActivity.kt
-├── res/
-│   ├── anim/
-│   ├── drawable/
-│   ├── layout/
-│   │   ├── activity_main.xml
-│   │   └── activity_confirmation.xml
-│   └── values/
-│       ├── colors.xml
-│       ├── strings.xml
-│       ├── styles.xml
-│       └── themes.xml
-└── AndroidManifest.xml
+app/src/main/res/layout/
+├── activity_main.xml
+├── activity_favorites.xml
+├── item_mascota.xml
+└── view_action_favorites.xml
 ```
 
-## Flujo de navegación
+## Criterios de evaluación cubiertos
+
+- ✅ Proyecto ejecutable
+- ✅ DataSet
+- ✅ Adapter
+- ✅ ViewHolder
+- ✅ Layout de item para el RecyclerView
+- ✅ RecyclerView principal
+- ✅ Action View de estrella
+- ✅ Acción para abrir favoritos
+- ✅ RecyclerView con 5 mascotas
+- ✅ Botón para subir al inicio
+- ✅ Rating mediante icono de hueso
+- ✅ Navegación de regreso al Activity padre
+
+## Flujo
 
 ```text
-Formulario
-   ↓ Continuar
-Confirmación
-   ↓ Editar datos
-Formulario con datos precargados
+MainActivity
+Lista de mascotas
+      │
+      ├── Hueso → aumenta rating
+      │
+      ├── FAB ↑ → vuelve al inicio
+      │
+      └── ⭐ 5
+           │
+           ▼
+FavoritesActivity
+5 mascotas hardcodeadas
+           │
+           └── ← Regresar
 ```
 
-Los datos se transfieren entre Activities mediante `Intent` y extras.
+## Ejecutar
 
-## Ejecutar el proyecto
-
-1. Abrir el proyecto en Android Studio.
-2. Esperar la sincronización de Gradle.
-3. Seleccionar un emulador o dispositivo Android.
-4. Ejecutar la aplicación.
+Abre el proyecto en Android Studio, sincroniza Gradle y ejecuta en un emulador o dispositivo Android.
 
 ## Descargar los últimos cambios
 
@@ -119,11 +92,12 @@ git switch main
 git pull origin main
 ```
 
-## Clonar por primera vez
+## Evidencias
 
-```bash
-git clone https://github.com/CristianCanoIng/Lecano.git
-cd Lecano
+Guarda los pantallazos finales de esta actividad dentro de:
+
+```text
+docs/screenshots/
 ```
 
 ## Repositorio

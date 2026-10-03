@@ -1,23 +1,8 @@
 <resources>
-    <string name="app_name">Lecano</string>
-    <string name="eyebrow_contact">LECANO · CONTACTO</string>
-    <string name="contact_title">Cuéntanos sobre ti</string>
-    <string name="contact_subtitle">Completa tus datos. Podrás revisarlos antes de confirmar.</string>
-    <string name="full_name">Nombre completo</string>
-    <string name="birth_date">Fecha de nacimiento</string>
-    <string name="birth_date_helper">Selecciona la fecha en el calendario</string>
-    <string name="phone">Teléfono</string>
-    <string name="email">Email</string>
-    <string name="contact_description">Descripción del contacto</string>
-    <string name="description_helper">Escribe una breve descripción</string>
-    <string name="next">Continuar</string>
-    <string name="step_one">Paso 1 de 2 · Datos de contacto</string>
-    <string name="required_field">Este campo es obligatorio</string>
-    <string name="invalid_email">Ingresa un email válido</string>
-    <string name="eyebrow_confirmation">LECANO · CONFIRMACIÓN</string>
-    <string name="confirmation_title">Revisa tus datos</string>
-    <string name="confirmation_subtitle">Verifica la información antes de continuar.</string>
-    <string name="confirmed_data">Información registrada</string>
-    <string name="edit_data">Editar datos</string>
-    <string name="step_two">Paso 2 de 2 · Confirmación</string>
+    <string name="app_name">Petagram</string>
+    <string name="favorites">Favoritas</string>
+    <string name="favorites_title">5 mascotas favoritas</string>
+    <string name="open_favorites">Abrir últimas 5 mascotas favoritas</string>
+    <string name="rate_pet">Dar rating a la mascota</string>
+    <string name="scroll_top">Subir al inicio</string>
 </resources>

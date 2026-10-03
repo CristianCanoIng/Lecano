@@ -3,13 +3,24 @@
     <color name="brand_primary">#3157D5</color>
     <color name="brand_primary_dark">#203A9A</color>
     <color name="brand_secondary">#0F9F8F</color>
+    <color name="bone_yellow">#F6B73C</color>
+
     <color name="app_background">#F4F7FC</color>
     <color name="surface">#FFFFFFFF</color>
     <color name="surface_soft">#F8FAFD</color>
     <color name="text_primary">#182033</color>
     <color name="text_secondary">#667085</color>
     <color name="outline_soft">#D9E1EC</color>
-    <color name="success">#17875B</color>
+
+    <color name="pet_pink">#FFE3EC</color>
+    <color name="pet_blue">#DDEBFF</color>
+    <color name="pet_orange">#FFE8CC</color>
+    <color name="pet_green">#DFF4E8</color>
+    <color name="pet_purple">#ECE4FF</color>
+    <color name="pet_teal">#DDF5F2</color>
+    <color name="pet_peach">#FFE2D8</color>
+    <color name="pet_gray">#E8ECF2</color>
+
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
 </resources>
