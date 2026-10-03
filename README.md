@@ -1,6 +1,6 @@
 # Lecano · Petagram
 
-Aplicación Android en **Kotlin** que implementa una lista de mascotas con `RecyclerView`, sistema de rating y una pantalla de las últimas 5 mascotas favoritas.
+Aplicación Android en **Kotlin** que implementa una lista de mascotas con `RecyclerView`, sistema de rating y una pantalla con las últimas 5 mascotas favoritas.
 
 ## Parte 1 · Lista de mascotas
 
@@ -26,7 +26,7 @@ Al seleccionarlo se abre `FavoritesActivity`, que:
 
 La pantalla principal también contiene un **FloatingActionButton** para subir rápidamente al inicio de la lista.
 
-## Arquitectura solicitada
+## Arquitectura
 
 ```text
 app/src/main/java/com/example/lecano/
@@ -34,7 +34,7 @@ app/src/main/java/com/example/lecano/
 ├── MascotaData.kt          # DataSet
 ├── MascotaAdapter.kt       # Adapter + ViewHolder
 ├── MainActivity.kt         # Lista principal
-└── FavoritesActivity.kt    # Últimas 5 favoritas
+└── FavoritesActivity.kt    # 5 favoritas
 ```
 
 Layouts principales:
@@ -53,14 +53,43 @@ app/src/main/res/layout/
 - ✅ DataSet
 - ✅ Adapter
 - ✅ ViewHolder
-- ✅ Layout de item para el RecyclerView
-- ✅ RecyclerView principal
+- ✅ Clase/layout para los items del RecyclerView
+- ✅ Resultado final del RecyclerView
 - ✅ Action View de estrella
-- ✅ Acción para abrir favoritos
-- ✅ RecyclerView con 5 mascotas
+- ✅ Acción del Action View
+- ✅ RecyclerView con 5 items
 - ✅ Botón para subir al inicio
 - ✅ Rating mediante icono de hueso
 - ✅ Navegación de regreso al Activity padre
+
+## Evidencias
+
+### RecyclerView principal y Action View
+
+Se observa la lista principal de mascotas, el rating y la estrella con las 5 favoritas.
+
+![Petagram - lista principal](docs/screenshots/petagram-lista-principal.png)
+
+### Rating y botón para subir
+
+La lista desplazada evidencia el `RecyclerView`, los huesos de rating y el **FloatingActionButton** para regresar al inicio.
+
+![Petagram - rating y botón subir](docs/screenshots/petagram-rating-boton-subir.png)
+
+### Activity de 5 mascotas favoritas
+
+La segunda Activity muestra exactamente cinco mascotas y el botón para regresar al Activity padre.
+
+![Petagram - 5 favoritas](docs/screenshots/petagram-5-favoritas.png)
+
+Las evidencias están almacenadas en:
+
+```text
+docs/screenshots/
+├── petagram-lista-principal.png
+├── petagram-rating-boton-subir.png
+└── petagram-5-favoritas.png
+```
 
 ## Flujo
 
@@ -85,21 +114,16 @@ FavoritesActivity
 
 Abre el proyecto en Android Studio, sincroniza Gradle y ejecuta en un emulador o dispositivo Android.
 
-## Descargar los últimos cambios
+## Descargar esta actividad
 
 ```bash
-git switch main
-git pull origin main
-```
-
-## Evidencias
-
-Guarda los pantallazos finales de esta actividad dentro de:
-
-```text
-docs/screenshots/
+git fetch origin
+git switch actividad-mascotas
+git pull origin actividad-mascotas
 ```
 
 ## Repositorio
 
 **CristianCanoIng/Lecano**
+
+Rama de esta actividad: **`actividad-mascotas`**
