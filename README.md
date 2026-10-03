@@ -1,46 +1,78 @@
 # Lecano
 
-Aplicación Android desarrollada en Kotlin para una actividad académica de captura, confirmación y edición de datos de contacto.
+Aplicación Android desarrollada en **Kotlin** para capturar, validar, confirmar y editar datos de contacto mediante dos Activities y componentes de **Material Design**.
 
-## Descripción
+## Objetivo
 
-La aplicación implementa un flujo de dos pantallas:
+La aplicación implementa el flujo solicitado en la actividad:
 
-1. **Formulario de contacto**
+1. **Activity 1 – Formulario**
    - Nombre completo
-   - Fecha de nacimiento mediante selector de fecha
+   - Fecha de nacimiento con `DatePickerDialog`
    - Teléfono
    - Email
    - Descripción del contacto
-   - Botón **Siguiente**
+   - Botón **Continuar**
 
-2. **Confirmación de datos**
+2. **Activity 2 – Confirmación**
    - Muestra todos los datos ingresados
-   - Incluye el botón **Editar datos**
-   - Permite regresar al formulario con los campos previamente diligenciados
+   - Botón **Editar datos**
+   - Regresa al formulario con los datos previamente cargados
 
-## Tecnologías utilizadas
+## Tecnologías
 
 - Kotlin
 - Android SDK
-- Gradle con Kotlin DSL
+- Gradle Kotlin DSL
 - Material Components
 - `TextInputLayout`
 - `TextInputEditText`
 - `MaterialButton`
 - `DatePickerDialog`
 - Activities e Intents
+- Animaciones y transiciones XML
 
-## Funcionalidades
+## Funcionalidades implementadas
 
-- Campos de texto con estilo Material Design
-- Validación de campos obligatorios
-- Validación básica del formato de email
-- Selector de fecha de nacimiento
-- Navegación entre dos Activities
-- Transferencia de información mediante `Intent`
-- Confirmación de todos los datos ingresados
-- Edición de información con datos precargados
+- ✅ Campos con estilo Material Design
+- ✅ Nombre completo
+- ✅ Fecha de nacimiento
+- ✅ Selector de fecha
+- ✅ Teléfono
+- ✅ Email
+- ✅ Descripción del contacto
+- ✅ Validación de campos obligatorios
+- ✅ Validación básica de email
+- ✅ Pantalla de confirmación
+- ✅ Botón **Editar datos**
+- ✅ Datos precargados al volver al formulario
+- ✅ Diseño visual personalizado
+- ✅ Iconografía Material
+- ✅ Animaciones de entrada
+- ✅ Transiciones entre Activities
+
+## Evidencias de funcionamiento
+
+Las capturas de evidencia del proyecto se almacenan en:
+
+```text
+docs/screenshots/
+├── formulario-vacio.jpg
+├── formulario-completo.jpg
+└── confirmacion.jpg
+```
+
+### Formulario inicial
+
+![Formulario inicial](docs/screenshots/formulario-vacio.jpg)
+
+### Formulario diligenciado
+
+![Formulario diligenciado](docs/screenshots/formulario-completo.jpg)
+
+### Confirmación de datos
+
+![Confirmación](docs/screenshots/confirmacion.jpg)
 
 ## Estructura principal
 
@@ -50,51 +82,52 @@ app/src/main/
 │   ├── MainActivity.kt
 │   └── ConfirmationActivity.kt
 ├── res/
+│   ├── anim/
+│   ├── drawable/
 │   ├── layout/
 │   │   ├── activity_main.xml
 │   │   └── activity_confirmation.xml
 │   └── values/
-│       ├── strings.xml
 │       ├── colors.xml
+│       ├── strings.xml
+│       ├── styles.xml
 │       └── themes.xml
 └── AndroidManifest.xml
 ```
 
-## Ejecución
+## Flujo de navegación
 
-1. Clona o actualiza el repositorio.
-2. Abre el proyecto con Android Studio.
-3. Espera a que Gradle sincronice las dependencias.
-4. Selecciona un emulador o dispositivo Android.
-5. Ejecuta la aplicación.
+```text
+Formulario
+   ↓ Continuar
+Confirmación
+   ↓ Editar datos
+Formulario con datos precargados
+```
 
-## Actualizar una copia local existente
+Los datos se transfieren entre Activities mediante `Intent` y extras.
+
+## Ejecutar el proyecto
+
+1. Abrir el proyecto en Android Studio.
+2. Esperar la sincronización de Gradle.
+3. Seleccionar un emulador o dispositivo Android.
+4. Ejecutar la aplicación.
+
+## Descargar los últimos cambios
 
 ```bash
 git switch main
 git pull origin main
 ```
 
-## Clonar el proyecto por primera vez
+## Clonar por primera vez
 
 ```bash
 git clone https://github.com/CristianCanoIng/Lecano.git
 cd Lecano
 ```
 
-## Criterios de la actividad cubiertos
-
-- EditText con Material Design
-- Nombre completo
-- Fecha de nacimiento
-- Teléfono
-- Email
-- Descripción del contacto
-- DatePicker
-- Pantalla de confirmación
-- Botón **Editar datos**
-- Datos precargados al regresar al formulario
-
 ## Repositorio
 
-Proyecto académico: **Lecano**
+**CristianCanoIng/Lecano**
