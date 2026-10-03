@@ -2,28 +2,28 @@
 
 Aplicación Android desarrollada en **Kotlin** para capturar, validar, confirmar y editar datos de contacto mediante dos Activities y componentes de **Material Design**.
 
-## Objetivo
+## Funcionalidad
 
-La aplicación implementa el flujo solicitado en la actividad:
+La aplicación implementa el flujo completo solicitado:
 
-1. **Activity 1 – Formulario**
+1. **Formulario de contacto**
    - Nombre completo
-   - Fecha de nacimiento con `DatePickerDialog`
+   - Fecha de nacimiento mediante `DatePickerDialog`
    - Teléfono
    - Email
    - Descripción del contacto
    - Botón **Continuar**
 
-2. **Activity 2 – Confirmación**
-   - Muestra todos los datos ingresados
+2. **Confirmación de datos**
+   - Visualización de todos los datos ingresados
    - Botón **Editar datos**
-   - Regresa al formulario con los datos previamente cargados
+   - Retorno al formulario con los campos previamente diligenciados
 
-## Tecnologías
+## Tecnologías utilizadas
 
 - Kotlin
 - Android SDK
-- Gradle Kotlin DSL
+- Gradle con Kotlin DSL
 - Material Components
 - `TextInputLayout`
 - `TextInputEditText`
@@ -32,47 +32,45 @@ La aplicación implementa el flujo solicitado en la actividad:
 - Activities e Intents
 - Animaciones y transiciones XML
 
-## Funcionalidades implementadas
+## Criterios cumplidos
 
-- ✅ Campos con estilo Material Design
+- ✅ EditText con Material Design
 - ✅ Nombre completo
 - ✅ Fecha de nacimiento
-- ✅ Selector de fecha
+- ✅ Picker de fecha
 - ✅ Teléfono
 - ✅ Email
 - ✅ Descripción del contacto
 - ✅ Validación de campos obligatorios
-- ✅ Validación básica de email
+- ✅ Validación de formato de email
 - ✅ Pantalla de confirmación
 - ✅ Botón **Editar datos**
 - ✅ Datos precargados al volver al formulario
 - ✅ Diseño visual personalizado
-- ✅ Iconografía Material
-- ✅ Animaciones de entrada
-- ✅ Transiciones entre Activities
+- ✅ Animaciones de entrada y transición
 
-## Evidencias de funcionamiento
-
-Las capturas de evidencia del proyecto se almacenan en:
-
-```text
-docs/screenshots/
-├── formulario-vacio.jpg
-├── formulario-completo.jpg
-└── confirmacion.jpg
-```
+## Evidencias
 
 ### Formulario inicial
 
-![Formulario inicial](docs/screenshots/formulario-vacio.jpg)
+![Formulario inicial](docs/screenshots/formulario-vacio.png)
 
 ### Formulario diligenciado
 
-![Formulario diligenciado](docs/screenshots/formulario-completo.jpg)
+![Formulario diligenciado](docs/screenshots/formulario-completo.png)
 
 ### Confirmación de datos
 
-![Confirmación](docs/screenshots/confirmacion.jpg)
+![Confirmación de datos](docs/screenshots/confirmacion.png)
+
+Las capturas se encuentran en:
+
+```text
+docs/screenshots/
+├── formulario-vacio.png
+├── formulario-completo.png
+└── confirmacion.png
+```
 
 ## Estructura principal
 
