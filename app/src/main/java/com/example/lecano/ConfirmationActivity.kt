@@ -2,6 +2,7 @@ package com.example.lecano
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import com.google.android.material.button.MaterialButton
@@ -20,9 +21,32 @@ class ConfirmationActivity : ComponentActivity() {
 
         readContactData()
         showContactData()
+        animateEntrance()
 
         findViewById<MaterialButton>(R.id.buttonEditData).setOnClickListener {
             returnToEdit()
+        }
+    }
+
+    private fun animateEntrance() {
+        val views = listOf(
+            findViewById<View>(R.id.textConfirmationEyebrow),
+            findViewById<View>(R.id.textConfirmationTitle),
+            findViewById<View>(R.id.textConfirmationSubtitle),
+            findViewById<View>(R.id.confirmationCard),
+            findViewById<View>(R.id.buttonEditData),
+            findViewById<View>(R.id.textConfirmationStep)
+        )
+
+        views.forEachIndexed { index, view ->
+            view.alpha = 0f
+            view.translationY = 24f
+            view.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setStartDelay(index * 65L)
+                .setDuration(340L)
+                .start()
         }
     }
 
@@ -53,6 +77,7 @@ class ConfirmationActivity : ComponentActivity() {
         }
 
         startActivity(editIntent)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.fade_out)
         finish()
     }
 }

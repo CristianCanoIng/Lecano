@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.button.MaterialButton
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var phoneInput: TextInputEditText
     private lateinit var emailInput: TextInputEditText
     private lateinit var descriptionInput: TextInputEditText
+    private lateinit var nextButton: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +35,10 @@ class MainActivity : ComponentActivity() {
         bindViews()
         configureInputs()
         populateFromIntent(intent)
+        animateEntrance()
 
-        findViewById<MaterialButton>(R.id.buttonNext).setOnClickListener {
+        nextButton.setOnClickListener {
+            animateButtonTap(it)
             if (validateForm()) {
                 openConfirmation()
             }
@@ -59,6 +63,7 @@ class MainActivity : ComponentActivity() {
         phoneInput = findViewById(R.id.inputPhone)
         emailInput = findViewById(R.id.inputEmail)
         descriptionInput = findViewById(R.id.inputDescription)
+        nextButton = findViewById(R.id.buttonNext)
     }
 
     private fun configureInputs() {
@@ -69,6 +74,43 @@ class MainActivity : ComponentActivity() {
         phoneInput.doAfterTextChanged { phoneLayout.error = null }
         emailInput.doAfterTextChanged { emailLayout.error = null }
         descriptionInput.doAfterTextChanged { descriptionLayout.error = null }
+    }
+
+    private fun animateEntrance() {
+        val views = listOf(
+            findViewById<View>(R.id.textEyebrow),
+            findViewById<View>(R.id.textTitle),
+            findViewById<View>(R.id.textSubtitle),
+            findViewById<View>(R.id.formCard),
+            nextButton,
+            findViewById<View>(R.id.textStep)
+        )
+
+        views.forEachIndexed { index, view ->
+            view.alpha = 0f
+            view.translationY = 28f
+            view.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setStartDelay(index * 65L)
+                .setDuration(360L)
+                .start()
+        }
+    }
+
+    private fun animateButtonTap(view: View) {
+        view.animate()
+            .scaleX(0.98f)
+            .scaleY(0.98f)
+            .setDuration(70L)
+            .withEndAction {
+                view.animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(110L)
+                    .start()
+            }
+            .start()
     }
 
     private fun showDatePicker() {
@@ -108,7 +150,6 @@ class MainActivity : ComponentActivity() {
 
     private fun validateForm(): Boolean {
         clearErrors()
-
         var isValid = true
 
         if (fullNameInput.text.isNullOrBlank()) {
@@ -140,6 +181,25 @@ class MainActivity : ComponentActivity() {
             isValid = false
         }
 
+        if (!isValid) {
+            findViewById<View>(R.id.formCard).animate()
+                .translationX(8f)
+                .setDuration(70L)
+                .withEndAction {
+                    findViewById<View>(R.id.formCard).animate()
+                        .translationX(-8f)
+                        .setDuration(70L)
+                        .withEndAction {
+                            findViewById<View>(R.id.formCard).animate()
+                                .translationX(0f)
+                                .setDuration(70L)
+                                .start()
+                        }
+                        .start()
+                }
+                .start()
+        }
+
         return isValid
     }
 
@@ -161,6 +221,7 @@ class MainActivity : ComponentActivity() {
         }
 
         startActivity(confirmationIntent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.fade_out)
     }
 
     private fun populateFromIntent(data: Intent) {
