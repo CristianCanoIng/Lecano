@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Lecano</string>
+    <string name="contact_title">Formulario de contacto</string>
+    <string name="contact_subtitle">Ingresa tus datos para continuar.</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="birth_date">Fecha de nacimiento</string>
+    <string name="phone">Teléfono</string>
+    <string name="email">Email</string>
+    <string name="contact_description">Descripción del contacto</string>
+    <string name="next">Siguiente</string>
+    <string name="required_field">Este campo es obligatorio</string>
+    <string name="invalid_email">Ingresa un email válido</string>
+    <string name="confirmation_title">Confirmación de datos</string>
+    <string name="confirmation_subtitle">Revisa que la información sea correcta.</string>
+    <string name="edit_data">Editar datos</string>
 </resources>
