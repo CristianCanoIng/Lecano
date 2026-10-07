@@ -9,12 +9,23 @@ import com.google.android.material.appbar.MaterialToolbar
 
 class FavoritesActivity : ComponentActivity() {
 
+    private lateinit var databaseHelper: MascotaDatabaseHelper
+    private lateinit var recyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
+        databaseHelper = MascotaDatabaseHelper(this)
+        recyclerView = findViewById(R.id.recyclerFavorites)
+
         configureToolbar()
         configureRecyclerView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadLastFivePets()
     }
 
     private fun configureToolbar() {
@@ -25,15 +36,22 @@ class FavoritesActivity : ComponentActivity() {
     }
 
     private fun configureRecyclerView() {
-        findViewById<RecyclerView>(R.id.recyclerFavorites).apply {
-            layoutManager = LinearLayoutManager(this@FavoritesActivity)
-            adapter = MascotaAdapter(
-                mascotas = MascotaData.favoritePets(),
-                allowRating = false
-            )
-            itemAnimator = DefaultItemAnimator()
-            setHasFixedSize(true)
-        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.setHasFixedSize(true)
+        loadLastFivePets()
+    }
+
+    private fun loadLastFivePets() {
+        recyclerView.adapter = MascotaAdapter(
+            mascotas = databaseHelper.getLastFivePets(),
+            allowRating = false
+        )
+    }
+
+    override fun onDestroy() {
+        databaseHelper.close()
+        super.onDestroy()
     }
 
     override fun finish() {

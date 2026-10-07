@@ -14,6 +14,7 @@ class PetsFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var scrollTopButton: FloatingActionButton
+    private lateinit var databaseHelper: MascotaDatabaseHelper
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,9 +25,25 @@ class PetsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.recyclerPets)
         scrollTopButton = view.findViewById(R.id.fabScrollTop)
+        databaseHelper = MascotaDatabaseHelper(requireContext())
+
+        val mascotas = MascotaData.allPets()
+        val persistedPets = databaseHelper.getSavedPetsById()
+
+        mascotas.forEach { mascota ->
+            persistedPets[mascota.id]?.let { persisted ->
+                mascota.rating = persisted.rating
+                mascota.ratedByUser = persisted.ratedByUser
+            }
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = MascotaAdapter(MascotaData.allPets())
+        recyclerView.adapter = MascotaAdapter(
+            mascotas = mascotas,
+            onPetRated = { mascota ->
+                databaseHelper.saveRatedPet(mascota)
+            }
+        )
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.setHasFixedSize(true)
 
@@ -44,5 +61,12 @@ class PetsFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onDestroyView() {
+        if (::databaseHelper.isInitialized) {
+            databaseHelper.close()
+        }
+        super.onDestroyView()
     }
 }
