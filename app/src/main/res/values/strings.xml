@@ -1,8 +1,37 @@
 <resources>
     <string name="app_name">Petagram</string>
+
     <string name="favorites">Favoritas</string>
     <string name="favorites_title">5 mascotas favoritas</string>
     <string name="open_favorites">Abrir últimas 5 mascotas favoritas</string>
     <string name="rate_pet">Dar rating a la mascota</string>
     <string name="scroll_top">Subir al inicio</string>
+
+    <string name="tab_home">Lista de mascotas</string>
+    <string name="tab_profile">Perfil de mascota</string>
+
+    <string name="profile_photo">Foto de perfil de la mascota</string>
+    <string name="profile_pet_name">Ronny</string>
+    <string name="profile_gallery_subtitle">Fotos publicadas · Grid de ratings</string>
+
+    <string name="contact_menu">Contacto</string>
+    <string name="about_menu">Acerca De</string>
+
+    <string name="contact_title">Envíanos un comentario</string>
+    <string name="contact_subtitle">Completa el formulario y Petagram enviará tu mensaje mediante JavaMail.</string>
+    <string name="contact_name">Nombre</string>
+    <string name="contact_email">Correo electrónico</string>
+    <string name="contact_message">Mensaje</string>
+    <string name="send_comment">Enviar Comentario</string>
+    <string name="sending_comment">Enviando…</string>
+    <string name="comment_sent">Comentario enviado correctamente.</string>
+    <string name="comment_send_error">No fue posible enviar el comentario.</string>
+    <string name="javamail_note">Envío implementado con JavaMail. Las credenciales SMTP se configuran localmente.</string>
+
+    <string name="required_field">Este campo es obligatorio</string>
+    <string name="invalid_email">Ingresa un correo electrónico válido</string>
+
+    <string name="developer_name">Cristian Cano</string>
+    <string name="developer_role">Desarrollador de Petagram</string>
+    <string name="developer_bio">Desarrollador del proyecto Lecano / Petagram. Esta aplicación académica integra Material Design, RecyclerView, menús, navegación, ViewPager2, Fragments y envío de comentarios con JavaMail, aplicando una arquitectura modular y una identidad visual consistente.</string>
 </resources>

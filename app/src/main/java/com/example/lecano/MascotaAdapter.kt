@@ -13,7 +13,8 @@ import com.google.android.material.card.MaterialCardView
 
 class MascotaAdapter(
     private val mascotas: MutableList<Mascota>,
-    private val allowRating: Boolean = true
+    private val allowRating: Boolean = true,
+    private val onPetRated: ((Mascota) -> Unit)? = null
 ) : RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MascotaViewHolder {
@@ -59,8 +60,11 @@ class MascotaAdapter(
                 else R.drawable.ic_bone_outline_24
             )
 
-            val tintColor = if (mascota.ratedByUser) R.color.bone_yellow
-            else R.color.text_secondary
+            val tintColor = if (mascota.ratedByUser) {
+                R.color.bone_yellow
+            } else {
+                R.color.text_secondary
+            }
 
             ImageViewCompat.setImageTintList(
                 rateButton,
@@ -71,9 +75,12 @@ class MascotaAdapter(
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val selectedPet = mascotas[position]
+
                     if (!selectedPet.ratedByUser) {
                         selectedPet.rating += 1
                         selectedPet.ratedByUser = true
+
+                        onPetRated?.invoke(selectedPet.copy())
                         notifyItemChanged(position)
                     }
                 }

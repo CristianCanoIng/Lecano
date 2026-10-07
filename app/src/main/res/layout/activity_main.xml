@@ -17,32 +17,22 @@
         app:title="@string/app_name"
         app:titleTextColor="@color/text_primary" />
 
-    <FrameLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/surface"
+        app:tabGravity="fill"
+        app:tabIconTint="@color/brand_primary"
+        app:tabIndicatorColor="@color/brand_primary"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="fixed" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerPets"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingStart="14dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="14dp"
-            android:paddingBottom="92dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabScrollTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="22dp"
-            android:contentDescription="@string/scroll_top"
-            app:backgroundTint="@color/brand_primary"
-            app:srcCompat="@drawable/ic_arrow_up_24"
-            app:tint="@color/white" />
-
-    </FrameLayout>
+        android:layout_weight="1" />
 
 </LinearLayout>
