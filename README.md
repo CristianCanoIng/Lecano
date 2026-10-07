@@ -1,129 +1,172 @@
-# Lecano · Petagram
+# Lecano · Petagram — Menús y Fragments
 
-Aplicación Android en **Kotlin** que implementa una lista de mascotas con `RecyclerView`, sistema de rating y una pantalla con las últimas 5 mascotas favoritas.
+Esta rama extiende la actividad anterior de **Petagram** incorporando **menús, ViewPager2, Fragments, perfil de mascota y JavaMail**, manteniendo el RecyclerView, ratings y favoritos desarrollados previamente.
 
-## Parte 1 · Lista de mascotas
+## Rama de esta actividad
 
-La pantalla principal utiliza un `RecyclerView` para mostrar un DataSet de mascotas. Cada item incluye:
+```text
+actividad-menus-fragments
+```
 
-- Identidad visual de la mascota
+La rama parte de `actividad-mascotas`, por lo que las entregas anteriores permanecen separadas.
+
+## Menú de opciones
+
+El menú de tres puntos contiene los dos elementos solicitados:
+
+- **Contacto**
+- **Acerca De**
+
+La estrella de las 5 mascotas favoritas se conserva como Action View.
+
+### Contacto
+
+`ContactActivity` contiene un formulario Material Design con:
+
 - Nombre
-- Rating actual
-- Hueso amarillo que representa el rating acumulado
-- Hueso de acción para dar un voto a la mascota
+- Correo electrónico
+- Mensaje
+- Botón **Enviar Comentario**
 
-Cada mascota puede recibir un voto por sesión desde el hueso de acción. Al votar, el contador aumenta y el hueso cambia de estado.
+Los campos utilizan `TextInputLayout` y `TextInputEditText`.
 
-## Parte 2 · Action View de favoritos
+El envío está implementado con **JavaMail para Android**:
 
-La barra superior contiene un **Action View en forma de estrella** con el número 5.
+```kotlin
+implementation("com.sun.mail:android-mail:1.6.7")
+implementation("com.sun.mail:android-activation:1.6.7")
+```
 
-Al seleccionarlo se abre `FavoritesActivity`, que:
+Las credenciales **no se guardan en GitHub**. Para probar el envío real agrega al archivo local `local.properties`:
 
-- Muestra exactamente **5 mascotas hardcodeadas**
-- Utiliza el mismo `RecyclerView`
-- Permite regresar al Activity padre mediante el botón de navegación
+```properties
+SMTP_USER=tu_correo@gmail.com
+SMTP_PASSWORD=tu_app_password
+SMTP_TO=correo_destino@gmail.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+```
 
-La pantalla principal también contiene un **FloatingActionButton** para subir rápidamente al inicio de la lista.
+Para Gmail se recomienda usar una **contraseña de aplicación**, nunca la contraseña principal de la cuenta.
 
-## Arquitectura
+### Acerca De
+
+`AboutActivity` muestra la bio del desarrollador y permite regresar a la pantalla principal.
+
+## Fragments y ViewPager2
+
+La pantalla principal fue modularizada usando **ViewPager2** y dos Fragments:
+
+```text
+MainActivity
+└── ViewPager2
+    ├── PetsFragment
+    │   └── RecyclerView de mascotas
+    └── ProfileFragment
+        ├── Foto circular
+        └── RecyclerView Grid de publicaciones
+```
+
+### PetsFragment
+
+Contiene el RecyclerView principal de Petagram, mantiene el sistema de rating con huesos y el FloatingActionButton para volver al inicio.
+
+### ProfileFragment
+
+Muestra:
+
+- Foto circular de perfil
+- Nombre de la mascota: **Ronny**
+- Grid de 3 columnas
+- 9 publicaciones dummy
+- Cantidad de ratings representada con huesos
+
+Para la imagen circular se implementó:
+
+```kotlin
+implementation("com.mikhaellopez:circularimageview:4.3.1")
+```
+
+## Estructura principal
 
 ```text
 app/src/main/java/com/example/lecano/
-├── Mascota.kt              # Entidad
-├── MascotaData.kt          # DataSet
-├── MascotaAdapter.kt       # Adapter + ViewHolder
-├── MainActivity.kt         # Lista principal
-└── FavoritesActivity.kt    # 5 favoritas
+├── MainActivity.kt
+├── MainPagerAdapter.kt
+├── PetsFragment.kt
+├── ProfileFragment.kt
+├── PetPhoto.kt
+├── PetPhotoAdapter.kt
+├── ContactActivity.kt
+├── AboutActivity.kt
+├── MailSender.kt
+├── Mascota.kt
+├── MascotaData.kt
+├── MascotaAdapter.kt
+└── FavoritesActivity.kt
 ```
 
-Layouts principales:
+Layouts agregados:
 
 ```text
 app/src/main/res/layout/
 ├── activity_main.xml
-├── activity_favorites.xml
-├── item_mascota.xml
-└── view_action_favorites.xml
+├── fragment_pets.xml
+├── fragment_profile.xml
+├── item_profile_photo.xml
+├── activity_contact.xml
+└── activity_about.xml
 ```
 
 ## Criterios de evaluación cubiertos
 
-- ✅ Proyecto ejecutable
-- ✅ DataSet
-- ✅ Adapter
-- ✅ ViewHolder
-- ✅ Clase/layout para los items del RecyclerView
-- ✅ Resultado final del RecyclerView
-- ✅ Action View de estrella
-- ✅ Acción del Action View
-- ✅ RecyclerView con 5 items
-- ✅ Botón para subir al inicio
-- ✅ Rating mediante icono de hueso
-- ✅ Navegación de regreso al Activity padre
-
-## Evidencias
-
-### RecyclerView principal y Action View
-
-Se observa la lista principal de mascotas, el rating y la estrella con las 5 favoritas.
-
-![Petagram - lista principal](docs/screenshots/petagram-lista-principal.png)
-
-### Rating y botón para subir
-
-La lista desplazada evidencia el `RecyclerView`, los huesos de rating y el **FloatingActionButton** para regresar al inicio.
-
-![Petagram - rating y botón subir](docs/screenshots/petagram-rating-boton-subir.png)
-
-### Activity de 5 mascotas favoritas
-
-La segunda Activity muestra exactamente cinco mascotas y el botón para regresar al Activity padre.
-
-![Petagram - 5 favoritas](docs/screenshots/petagram-5-favoritas.png)
-
-Las evidencias están almacenadas en:
-
-```text
-docs/screenshots/
-├── petagram-lista-principal.png
-├── petagram-rating-boton-subir.png
-└── petagram-5-favoritas.png
-```
-
-## Flujo
-
-```text
-MainActivity
-Lista de mascotas
-      │
-      ├── Hueso → aumenta rating
-      │
-      ├── FAB ↑ → vuelve al inicio
-      │
-      └── ⭐ 5
-           │
-           ▼
-FavoritesActivity
-5 mascotas hardcodeadas
-           │
-           └── ← Regresar
-```
-
-## Ejecutar
-
-Abre el proyecto en Android Studio, sincroniza Gradle y ejecuta en un emulador o dispositivo Android.
+- ✅ Menú **Contacto**
+- ✅ Menú **Acerca De**
+- ✅ Acciones de ambos menús
+- ✅ Formulario con Material Design
+- ✅ JavaMail implementado
+- ✅ ViewPager2
+- ✅ Modularización en Fragments
+- ✅ Fragment de lista de mascotas
+- ✅ Fragment de perfil
+- ✅ RecyclerView en Grid
+- ✅ Foto circular mediante librería
+- ✅ Ratings dummy con huesos
+- ✅ Se conserva la pantalla de 5 favoritas
 
 ## Descargar esta actividad
 
 ```bash
 git fetch origin
-git switch actividad-mascotas
-git pull origin actividad-mascotas
+git switch actividad-menus-fragments
+git pull origin actividad-menus-fragments
 ```
+
+Si ya tienes cambios locales sin guardar:
+
+```bash
+git stash
+git switch actividad-menus-fragments
+git pull origin actividad-menus-fragments
+git stash pop
+```
+
+## Evidencias
+
+Las capturas de esta actividad se pueden subir posteriormente a:
+
+```text
+docs/screenshots/
+```
+
+Capturas recomendadas para la entrega:
+
+1. Lista principal con ViewPager.
+2. Fragment de perfil con Grid.
+3. Menú abierto mostrando **Contacto** y **Acerca De**.
+4. Formulario de Contacto.
+5. Pantalla Acerca De.
 
 ## Repositorio
 
 **CristianCanoIng/Lecano**
-
-Rama de esta actividad: **`actividad-mascotas`**
