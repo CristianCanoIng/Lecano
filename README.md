@@ -134,6 +134,42 @@ app/src/main/res/layout/
 - ✅ Ratings dummy con huesos
 - ✅ Se conserva la pantalla de 5 favoritas
 
+## Evidencias
+
+### Menú de opciones y Fragment principal
+
+Se observa Petagram con el `ViewPager2`, el Fragment de lista de mascotas y el menú de opciones desplegado con **Contacto** y **Acerca De**.
+
+![Menú de opciones](docs/screenshots/menus-opciones.png)
+
+### Formulario de Contacto
+
+El formulario utiliza componentes de Material Design para nombre, correo y mensaje, además del botón **Enviar Comentario** conectado a la implementación de JavaMail.
+
+![Formulario de Contacto](docs/screenshots/contacto.png)
+
+### Acerca De
+
+Pantalla con la bio del desarrollador y navegación de regreso a la aplicación.
+
+![Pantalla Acerca De](docs/screenshots/acerca-de.png)
+
+### Fragment de perfil
+
+Segundo Fragment del `ViewPager2`, con foto circular de **Ronny** y un `RecyclerView` en Grid de tres columnas mostrando publicaciones dummy y ratings con huesos.
+
+![Fragment de perfil](docs/screenshots/perfil-fragment.png)
+
+Las evidencias de esta actividad están almacenadas en:
+
+```text
+docs/screenshots/
+├── menus-opciones.png
+├── contacto.png
+├── acerca-de.png
+└── perfil-fragment.png
+```
+
 ## Descargar esta actividad
 
 ```bash
@@ -150,22 +186,6 @@ git switch actividad-menus-fragments
 git pull origin actividad-menus-fragments
 git stash pop
 ```
-
-## Evidencias
-
-Las capturas de esta actividad se pueden subir posteriormente a:
-
-```text
-docs/screenshots/
-```
-
-Capturas recomendadas para la entrega:
-
-1. Lista principal con ViewPager.
-2. Fragment de perfil con Grid.
-3. Menú abierto mostrando **Contacto** y **Acerca De**.
-4. Formulario de Contacto.
-5. Pantalla Acerca De.
 
 ## Repositorio
 
